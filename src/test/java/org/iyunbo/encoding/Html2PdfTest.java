@@ -1,6 +1,5 @@
 package org.iyunbo.encoding;
 
-import org.iyunbo.encoding.Html2Pdf;
 import org.junit.jupiter.api.Test;
 
 class Html2PdfTest {

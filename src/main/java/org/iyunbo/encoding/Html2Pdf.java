@@ -40,7 +40,7 @@ class Html2Pdf {
 		}
 	}
 
-	class AsianFontProvider extends XMLWorkerFontProvider {
+	private class AsianFontProvider extends XMLWorkerFontProvider {
 		@Override
 		public Font getFont(final String fontName, final String encoding, final boolean embedded, final float size, final int style, final BaseColor color) {
 			try {
