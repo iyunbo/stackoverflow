@@ -8,10 +8,14 @@
     <artifactId>stackoverflow</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
     <modules>
         <module>dropwizard-log4j2</module>
         <module>itext-chinese</module>
         <module>mail365</module>
+        <module>spring-playground</module>
     </modules>
     <build>
         <plugins>
