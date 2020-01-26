@@ -16,6 +16,7 @@
         <module>itext-chinese</module>
         <module>mail365</module>
         <module>spring-playground</module>
+        <module>jooq-sbx</module>
     </modules>
     <build>
         <plugins>

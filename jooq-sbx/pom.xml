@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>stackoverflow</artifactId>
+        <groupId>org.iyunbo</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>jooq-sbx</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+            <version>3.12.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-meta</artifactId>
+            <version>3.12.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-codegen</artifactId>
+            <version>3.12.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.9</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!-- Specify the maven code generator plugin -->
+                <!-- Use org.jooq            for the Open Source Edition
+                         org.jooq.pro        for commercial editions,
+                         org.jooq.pro-java-8 for commercial editions with Java 8 support,
+                         org.jooq.pro-java-6 for commercial editions with Java 6 support,
+                         org.jooq.trial      for the free trial edition
+
+                     Note: Only the Open Source Edition is hosted on Maven Central.
+                           Import the others manually from your distribution -->
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>3.12.3</version>
+
+                <executions>
+                    <execution>
+                        <id>jooq-codegen</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <jdbc>
+                                <driver>org.postgresql.Driver</driver>
+                                <url>jdbc:postgresql://book:5432/nas</url>
+                                <user>postgres</user>
+                                <password></password>
+                            </jdbc>
+
+                            <generator>
+                                <!-- The default code generator. You can override this one, to generate your own code style.
+                                     Supported generators:
+                                     - org.jooq.codegen.JavaGenerator
+                                     - org.jooq.codegen.ScalaGenerator
+                                     Defaults to org.jooq.codegen.JavaGenerator -->
+                                <name>org.jooq.codegen.JavaGenerator</name>
+
+                                <database>
+                                    <!-- The database type. The format here is:
+                                         org.jooq.meta.[database].[database]Database -->
+                                    <name>org.jooq.meta.postgres.PostgresDatabase</name>
+
+                                    <!-- The database schema (or in the absence of schema support, in your RDBMS this
+                                         can be the owner, user, database name) to be generated -->
+                                    <inputSchema>public</inputSchema>
+
+                                    <!-- All elements that are generated from your schema
+                                         (A Java regular expression. Use the pipe to separate several expressions)
+                                         Watch out for case-sensitivity. Depending on your database, this might be important! -->
+                                    <includes>.*</includes>
+
+                                    <!-- All elements that are excluded from your schema
+                                         (A Java regular expression. Use the pipe to separate several expressions).
+                                         Excludes match before includes, i.e. excludes have a higher priority -->
+                                    <excludes></excludes>
+                                </database>
+
+                                <target>
+                                    <!-- The destination package of your generated classes (within the destination directory) -->
+                                    <packageName>org.iyunbo.meta.generated</packageName>
+
+                                    <!-- The destination directory of your generated classes. Using Maven directory layout here -->
+                                    <directory>D:/workspace/stackoverflow/jooq-sbx/src/main/java</directory>
+                                </target>
+                            </generator>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
